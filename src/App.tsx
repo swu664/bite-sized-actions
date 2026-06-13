@@ -3,6 +3,54 @@ import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
 
+import TaskList from "./TaskList";
+import type { Task } from "./type.ts"
+
+// sample data
+const tasks: Task[] = [
+  {
+    id: 1,
+    title: "Build app",
+    deadline: null,
+    complete: false,
+    completedAt: null,
+    recurrance: null,
+    children: [
+      {
+        id: 2,
+        title: "Design UI",
+        deadline: null,
+        complete: false,
+        completedAt: null,
+        recurrance: null,
+        children: [
+          {
+            id: 4, title: "Wireframes",
+            deadline: null,
+            complete: false,
+            completedAt: null,
+            recurrance: null,
+          },
+          {
+            id: 5, title: "Pick colours",
+            deadline: null,
+            complete: false,
+            completedAt: null,
+            recurrance: null,
+          },
+        ],
+      },
+      {
+        id: 3, title: "Set up DB",
+        deadline: null,
+        complete: false,
+        completedAt: null,
+        recurrance: null,
+      },
+    ],
+  },
+];
+
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
@@ -14,6 +62,12 @@ function App() {
 
   return (
     <main className="container">
+
+      {/* render TaskList (sample data) */}
+      {tasks.map((task) =>
+        <TaskList task={task} />
+      )}
+
       <h1>Welcome to Tauri + React</h1>
 
       <div className="row">
